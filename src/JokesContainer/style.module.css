@@ -1,0 +1,70 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.light {
+    background: linear-gradient(140deg, rgba(179, 229, 252, 1) 48.8%, rgba(240, 98, 146, 1) 49%);
+}
+
+.dark {
+    background: linear-gradient(140deg, #000 48.8%, #2d3132 49%);
+}
+
+.container {
+    width: 80vw;
+    height: 80vh;
+    box-shadow: 5px 5px 15px #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.aside {
+    flex: 3;
+    height: 100%;
+}
+
+.jokesArea {
+    overflow-y: auto;
+    flex: 7;
+    height: 100%;
+}
+
+
+body.dark ::-webkit-scrollbar-thumb{
+    background: linear-gradient(140deg, #493939 48.8%, #a77c7c7c 49%);
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: linear-gradient(140deg, rgba(179, 229, 252, 1) 48.8%, rgba(240, 98, 146, 1) 49%);
+}

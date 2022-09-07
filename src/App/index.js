@@ -1,7 +1,10 @@
 import { Component } from "react";
+import JokesContainer from "../JokesContainer";
 
 export default class App extends Component {
     render() {
-        return <h2>Joke App</h2>;
+        return (
+            <JokesContainer />
+        );
     }
 }

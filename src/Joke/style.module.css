@@ -3,6 +3,10 @@
     background-color: #181A1B !important;
 }
 
+.dark{
+    border-color: #000 !important;
+}
+
 .joke {
     background-color: #FFF;
     width: 100%;

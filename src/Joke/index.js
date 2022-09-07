@@ -46,12 +46,11 @@ export default class Joke extends Component {
     }
 
     render() {
-        console.log(this.props.isDark)
         return (
             <div className={`${style.joke} ${this.props.isDark && style.dark} `} >
                 <div className={style.voteArea}>
                     <button className={style.voteArrow} onClick={() => this.vote(1)}><FaArrowUp /></button>
-                    <p className={`${style.votesCount} ${this.getBorderColor()}`}>{this.state.vote}</p>
+                    <p className={`${style.votesCount} ${this.getBorderColor()} ${this.props.isDark && style.darkVoteCount} `}>{this.state.vote}</p>
                     <button className={style.voteArrow} onClick={() => this.vote()} disabled={this.state.vote === 0 ? true : false} ><FaArrowDown /></button>
                 </div>
                 <div className={style.jokeText}>

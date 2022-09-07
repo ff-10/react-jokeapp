@@ -21,6 +21,13 @@ export default class Joke extends Component {
     vote(votingType) {
         if (!this.state.isVoted) {
             this.setState({ isVoted: true });
+
+            if (votingType) {
+                this.setState({ vote: this.state.vote + 1 });
+            } else {
+                this.setState({ vote: this.state.vote === 0 ? 0 : this.state.vote - 1 });
+            }
+            
         } else {
             if (votingType) {
                 this.setState({ vote: this.state.vote + 1 });

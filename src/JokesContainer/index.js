@@ -12,12 +12,13 @@ export default class JokesContainer extends Component {
         super();
 
         this.state = {
-            jokes: '',
+            jokes: [],
             isDark: false
         }
 
         this.toggleMode = this.toggleMode.bind(this);
         this.getJokes = this.getJokes.bind(this);
+        this.sortJokes = this.sortJokes.bind(this);
     }
 
 
@@ -52,13 +53,20 @@ export default class JokesContainer extends Component {
         this.setMode();
     }
 
-
+    sortJokes(jokeID, vote) {
+        for (const joke of this.state.jokes) {
+            if (joke.id === jokeID) {
+                joke.vote = vote;
+            }
+        }
+        const sortedJokes = this.state.jokes.sort((prevJoke, nextJoke) => nextJoke.vote - prevJoke.vote);
+        this.setState({jokes: sortedJokes});
+    }
 
     render() {
         if (!this.state.jokes.length) {
             return <Loading />
         }
-
 
         return (
             <div className={`${style.container}`}>
@@ -67,7 +75,7 @@ export default class JokesContainer extends Component {
                 </div>
 
                 <div className={style.jokesArea}>
-                    {this.state.jokes.map(joke => <Joke isDark={this.state.isDark} key={joke.id} joke={joke.joke} />)}
+                    {this.state.jokes.map(joke => <Joke isDark={this.state.isDark} key={joke.id} id={joke.id} joke={joke.joke} sendVote={this.sortJokes} />)}
                 </div>
             </div>
 

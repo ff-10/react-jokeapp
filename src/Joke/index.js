@@ -6,12 +6,13 @@ import { getImage } from "../constans/getImage";
 
 
 export default class Joke extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             vote: 0,
-            isVoted: false
+            isVoted: false,
+            jokeID: this.props.id
         }
 
         this.vote = this.vote.bind(this);
@@ -21,15 +22,19 @@ export default class Joke extends Component {
     vote(votingType) {
         if (!this.state.isVoted) {
             this.setState({ isVoted: true, vote: this.state.vote + 1 });
+            this.props.sendVote(this.state.jokeID,this.state.vote);
         } else {
             if (votingType) {
                 this.setState({ vote: this.state.vote + 1 });
+                this.props.sendVote(this.state.jokeID,this.state.vote);
+                return;
             } else {
                 this.setState({ vote: this.state.vote === 0 ? 0 : this.state.vote - 1 });
+                this.props.sendVote(this.state.jokeID,this.state.vote);
             }
         }
     }
-
+    
     getBorderColor() {
         if (this.state.vote <= 5) {
             return style.borderRed;
@@ -43,6 +48,11 @@ export default class Joke extends Component {
         else if (this.state.vote <= 20 || this.state.vote >= 20) {
             return style.borderGreen;
         }
+    }
+
+
+    componentDidMount(){
+        this.props.sendVote(this.state.jokeID,this.state.vote);
     }
 
     render() {
